@@ -1,6 +1,6 @@
---- libsoup-2.68.0/meson.build.orig	2019-09-11 11:08:25.000000000 +0200
-+++ libsoup-2.68.0/meson.build	2019-09-11 17:30:07.856616832 +0200
-@@ -311,11 +311,18 @@
+--- libsoup-2.99.3/meson.build.orig	2021-04-08 21:34:56.261188700 +0200
++++ libsoup-2.99.3/meson.build	2021-04-11 15:13:46.597820547 +0200
+@@ -329,11 +329,18 @@ endif
  ################
  # NTLM not supported on Windows
  if host_machine.system() != 'windows'
@@ -22,3 +22,12 @@
    endif
  endif
  
+@@ -392,7 +399,7 @@ summary({
+ 
+ summary({
+     'GSSAPI' : enable_gssapi,
+-    'NTLM' : ntlm_auth.found(),
++    'NTLM' : ntlm_auth_found,
+     'Brotli' : brotlidec_dep.found(),
+     'Translations' : xgettext.found(),
+     'GIR' : enable_introspection,
