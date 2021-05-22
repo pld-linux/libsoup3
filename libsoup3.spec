@@ -5,12 +5,12 @@
 Summary:	HTTP client/server library for GNOME
 Summary(pl.UTF-8):	Biblioteka klienta/serwera HTTP dla GNOME
 Name:		libsoup3
-Version:	2.99.5
+Version:	2.99.6
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/libsoup/2.99/libsoup-%{version}.tar.xz
-# Source0-md5:	bed9f970c966a6e96ee348cf33cbb791
+# Source0-md5:	a62fd2b43c058869006a0c69c71f7a7d
 Patch0:		%{name}-path-override.patch
 URL:		https://wiki.gnome.org/Projects/libsoup
 BuildRequires:	docbook-dtd412-xml
