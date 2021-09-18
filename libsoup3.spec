@@ -5,17 +5,17 @@
 Summary:	HTTP client/server library for GNOME
 Summary(pl.UTF-8):	Biblioteka klienta/serwera HTTP dla GNOME
 Name:		libsoup3
-Version:	2.99.8
+Version:	3.0.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	https://download.gnome.org/sources/libsoup/2.99/libsoup-%{version}.tar.xz
-# Source0-md5:	ed4fed0d5b3ff68ab43de7ebcbe6a009
+Source0:	https://download.gnome.org/sources/libsoup/3.0/libsoup-%{version}.tar.xz
+# Source0-md5:	f1b0caa1c66a4e11c5fced57a3509b89
 Patch0:		%{name}-path-override.patch
 URL:		https://wiki.gnome.org/Projects/libsoup
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel >= 1:2.67.4
+BuildRequires:	glib2-devel >= 1:2.69.1
 BuildRequires:	gobject-introspection-devel >= 0.10.0
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.20}
 BuildRequires:	heimdal-devel
@@ -23,6 +23,7 @@ BuildRequires:	libbrotli-devel
 BuildRequires:	libpsl-devel >= 0.20.0
 BuildRequires:	libxml2-devel >= 1:2.6.31
 BuildRequires:	meson >= 0.53
+BuildRequires:	nghttp2-devel
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
@@ -33,7 +34,7 @@ BuildRequires:	tar >= 1:1.22
 BuildRequires:	vala
 BuildRequires:	xz
 BuildRequires:	zlib-devel
-Requires:	glib2 >= 1:2.67.4
+Requires:	glib2 >= 1:2.69.1
 Requires:	libpsl >= 0.20.0
 # for TLS support
 Suggests:	glib-networking
@@ -55,7 +56,7 @@ Summary:	Header files for libsoup 3 library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libsoup 3
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.67.4
+Requires:	glib2-devel >= 1:2.69.1
 Requires:	libbrotli-devel
 Requires:	libpsl-devel >= 0.20.0
 Requires:	libxml2-devel >= 1:2.6.31
@@ -93,6 +94,19 @@ libsoup API documentation.
 
 %description apidocs -l pl.UTF-8
 Dokumentacja API libsoup.
+
+%package -n python3-libsoup3
+Summary:	Python 3.x interface for libsoup 3 library
+Summary(pl.UTF-8):	Interfejs Pythona 3.x do biblioteki libsoup 3
+Group:		Libraries/Python
+Requires:	%{name} = %{version}-%{release}
+Requires:	python3-pygobject3 >= 3.0
+
+%description -n python3-libsoup3
+Python 3.x interface for libsoup 3 library.
+
+%description -n python3-libsoup3 -l pl.UTF-8
+Interfejs Pythona 3.x do biblioteki libsoup 3.
 
 %package -n vala-libsoup3
 Summary:	libsoup 3 API for Vala language
@@ -158,6 +172,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_gtkdocdir}/libsoup-3.0
 %endif
+
+%files -n python3-libsoup3
+%defattr(644,root,root,755)
+%{py3_sitedir}/gi/overrides/Soup.py
 
 %files -n vala-libsoup3
 %defattr(644,root,root,755)
