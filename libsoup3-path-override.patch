@@ -1,6 +1,6 @@
---- libsoup-2.99.3/meson.build.orig	2021-04-08 21:34:56.261188700 +0200
-+++ libsoup-2.99.3/meson.build	2021-04-11 15:13:46.597820547 +0200
-@@ -329,11 +329,18 @@ endif
+--- libsoup-3.0.0/meson.build.orig	2021-09-18 17:42:24.256217200 +0200
++++ libsoup-3.0.0/meson.build	2021-09-19 22:18:19.217690057 +0200
+@@ -344,11 +344,18 @@ endif
  ################
  # NTLM not supported on Windows
  if host_machine.system() != 'windows'
@@ -20,9 +20,9 @@
 -    add_project_arguments('-DNTLM_AUTH="' + ntlm_auth.path() + '"', language : 'c')
 +    add_project_arguments('-DNTLM_AUTH="' + ntlm_auth_path + '"', language : 'c')
    endif
- endif
- 
-@@ -392,7 +399,7 @@ summary({
+ else
+   ntlm_auth = dependency('', required: false)
+@@ -409,7 +416,7 @@ summary({
  
  summary({
      'GSSAPI' : enable_gssapi,
