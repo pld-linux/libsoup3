@@ -5,12 +5,12 @@
 Summary:	HTTP client/server library for GNOME
 Summary(pl.UTF-8):	Biblioteka klienta/serwera HTTP dla GNOME
 Name:		libsoup3
-Version:	3.0.7
+Version:	3.0.8
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/libsoup/3.0/libsoup-%{version}.tar.xz
-# Source0-md5:	289bc07a960e32953ad1d66030803ab1
+# Source0-md5:	312a456caf0526bcb8d8b338a3ebb2ed
 # from libsoup 3.0.0 (waiting for pygobject3 release containing this file)
 Source1:	Soup.py
 Patch0:		%{name}-path-override.patch
