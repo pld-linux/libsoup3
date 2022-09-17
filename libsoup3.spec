@@ -5,12 +5,12 @@
 Summary:	HTTP client/server library for GNOME
 Summary(pl.UTF-8):	Biblioteka klienta/serwera HTTP dla GNOME
 Name:		libsoup3
-Version:	3.0.8
+Version:	3.2.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	https://download.gnome.org/sources/libsoup/3.0/libsoup-%{version}.tar.xz
-# Source0-md5:	312a456caf0526bcb8d8b338a3ebb2ed
+Source0:	https://download.gnome.org/sources/libsoup/3.2/libsoup-%{version}.tar.xz
+# Source0-md5:	34f1f15aa43f974dadf256aef2e89587
 # from libsoup 3.0.0 (waiting for pygobject3 release containing this file)
 Source1:	Soup.py
 Patch0:		%{name}-path-override.patch
@@ -24,7 +24,7 @@ BuildRequires:	heimdal-devel
 BuildRequires:	libbrotli-devel
 BuildRequires:	libpsl-devel >= 0.20.0
 BuildRequires:	libxml2-devel >= 1:2.6.31
-BuildRequires:	meson >= 0.53
+BuildRequires:	meson >= 0.54
 BuildRequires:	nghttp2-devel
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
@@ -130,7 +130,7 @@ API libsoup 3 dla języka Vala.
 
 %build
 %meson build \
-	%{?with_apidocs:-Dgtk_doc=true} \
+	%{!?with_apidocs:-Ddocs=disabled} \
 	-Dntlm=enabled \
 	-Dntlm_auth=/usr/bin/ntlm_auth \
 	-Dtests=false \
@@ -145,6 +145,12 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{py3_sitedir}/gi/overrides
 cp -p %{SOURCE1} $RPM_BUILD_ROOT%{py3_sitedir}/gi/overrides/Soup.py
+
+%if %{with apidocs}
+# FIXME: where to package gi-docgen generated docs?
+install -d $RPM_BUILD_ROOT%{_gtkdocdir}
+%{__mv} $RPM_BUILD_ROOT%{_docdir}/libsoup-3.0 $RPM_BUILD_ROOT%{_gtkdocdir}
+%endif
 
 %find_lang libsoup-3.0
 
