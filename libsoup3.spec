@@ -5,12 +5,12 @@
 Summary:	HTTP client/server library for GNOME
 Summary(pl.UTF-8):	Biblioteka klienta/serwera HTTP dla GNOME
 Name:		libsoup3
-Version:	3.2.0
+Version:	3.2.1
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/libsoup/3.2/libsoup-%{version}.tar.xz
-# Source0-md5:	34f1f15aa43f974dadf256aef2e89587
+# Source0-md5:	0531c51248e1ab72c9fd6469319b4992
 # from libsoup 3.0.0 (waiting for pygobject3 release containing this file)
 Source1:	Soup.py
 Patch0:		%{name}-path-override.patch
@@ -25,7 +25,7 @@ BuildRequires:	libbrotli-devel
 BuildRequires:	libpsl-devel >= 0.20.0
 BuildRequires:	libxml2-devel >= 1:2.6.31
 BuildRequires:	meson >= 0.54
-BuildRequires:	nghttp2-devel
+BuildRequires:	nghttp2-devel >= 1.50.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
@@ -38,6 +38,7 @@ BuildRequires:	xz
 BuildRequires:	zlib-devel
 Requires:	glib2 >= 1:2.69.1
 Requires:	libpsl >= 0.20.0
+Requires:	nghttp2-libs >= 1.50.0
 # for TLS support
 Suggests:	glib-networking
 # ntlm_auth for NTLM support
