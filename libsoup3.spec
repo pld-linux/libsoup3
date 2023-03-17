@@ -28,6 +28,7 @@ BuildRequires:	meson >= 0.54
 BuildRequires:	nghttp2-devel >= 1.50.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
+BuildRequires:	python3
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	sqlite3-devel
