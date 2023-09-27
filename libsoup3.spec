@@ -17,9 +17,9 @@ Patch0:		%{name}-path-override.patch
 URL:		https://wiki.gnome.org/Projects/libsoup
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-tools
+%{?with_apidocs:BuildRequires:	gi-docgen >= 2021.1}
 BuildRequires:	glib2-devel >= 1:2.69.1
 BuildRequires:	gobject-introspection-devel >= 0.10.0
-%{?with_apidocs:BuildRequires:	gtk-doc >= 1.20}
 BuildRequires:	heimdal-devel
 BuildRequires:	libbrotli-devel
 BuildRequires:	libpsl-devel >= 0.20.0
@@ -30,7 +30,7 @@ BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	python3
 BuildRequires:	rpm-build >= 4.6
-BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	rpmbuild(macros) >= 2.029
 BuildRequires:	sqlite3-devel
 BuildRequires:	sysprof-devel >= 3.38
 BuildRequires:	tar >= 1:1.22
@@ -90,7 +90,6 @@ Biblioteka statyczna libsoup 3.
 Summary:	libsoup API documentation
 Summary(pl.UTF-8):	Dokumentacja API libsoup
 Group:		Documentation
-Requires:	gtk-doc-common
 BuildArch:	noarch
 
 %description apidocs
@@ -149,9 +148,8 @@ install -d $RPM_BUILD_ROOT%{py3_sitedir}/gi/overrides
 cp -p %{SOURCE1} $RPM_BUILD_ROOT%{py3_sitedir}/gi/overrides/Soup.py
 
 %if %{with apidocs}
-# FIXME: where to package gi-docgen generated docs?
-install -d $RPM_BUILD_ROOT%{_gtkdocdir}
-%{__mv} $RPM_BUILD_ROOT%{_docdir}/libsoup-3.0 $RPM_BUILD_ROOT%{_gtkdocdir}
+install -d $RPM_BUILD_ROOT%{_gidocdir}
+%{__mv} $RPM_BUILD_ROOT%{_docdir}/libsoup-3.0 $RPM_BUILD_ROOT%{_gidocdir}
 %endif
 
 %find_lang libsoup-3.0
@@ -183,7 +181,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/libsoup-3.0
+%{_gidocdir}/libsoup-3.0
 %endif
 
 %files -n python3-libsoup3
