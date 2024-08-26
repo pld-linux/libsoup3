@@ -5,12 +5,12 @@
 Summary:	HTTP client/server library for GNOME
 Summary(pl.UTF-8):	Biblioteka klienta/serwera HTTP dla GNOME
 Name:		libsoup3
-Version:	3.4.4
+Version:	3.6.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	https://download.gnome.org/sources/libsoup/3.4/libsoup-%{version}.tar.xz
-# Source0-md5:	a63ea04a9686e9e4470b127ffe1eb96b
+Source0:	https://download.gnome.org/sources/libsoup/3.6/libsoup-%{version}.tar.xz
+# Source0-md5:	756fd5b1930d62a37ea2d2f093955802
 # from libsoup 3.0.0 (waiting for pygobject3 release containing this file)
 Source1:	Soup.py
 Patch0:		%{name}-path-override.patch
@@ -18,7 +18,7 @@ URL:		https://wiki.gnome.org/Projects/libsoup
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-tools
 %{?with_apidocs:BuildRequires:	gi-docgen >= 2021.1}
-BuildRequires:	glib2-devel >= 1:2.69.1
+BuildRequires:	glib2-devel >= 1:2.70.0
 BuildRequires:	gobject-introspection-devel >= 0.10.0
 BuildRequires:	heimdal-devel
 BuildRequires:	libbrotli-devel
@@ -37,7 +37,7 @@ BuildRequires:	tar >= 1:1.22
 BuildRequires:	vala
 BuildRequires:	xz
 BuildRequires:	zlib-devel
-Requires:	glib2 >= 1:2.69.1
+Requires:	glib2 >= 1:2.70.0
 Requires:	libpsl >= 0.20.0
 Requires:	nghttp2-libs >= 1.50.0
 # for TLS support
@@ -60,7 +60,7 @@ Summary:	Header files for libsoup 3 library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libsoup 3
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.69.1
+Requires:	glib2-devel >= 1:2.70.0
 Requires:	libbrotli-devel
 Requires:	libpsl-devel >= 0.20.0
 Requires:	libxml2-devel >= 1:2.6.31
