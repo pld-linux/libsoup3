@@ -30,7 +30,7 @@ BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	python3
 BuildRequires:	rpm-build >= 4.6
-BuildRequires:	rpmbuild(macros) >= 2.029
+BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	sqlite3-devel
 BuildRequires:	sysprof-devel >= 3.38
 BuildRequires:	tar >= 1:1.22
@@ -130,19 +130,19 @@ API libsoup 3 dla języka Vala.
 %patch -P0 -p1
 
 %build
-%meson build \
+%meson \
 	%{!?with_apidocs:-Ddocs=disabled} \
 	-Dntlm=enabled \
 	-Dntlm_auth=/usr/bin/ntlm_auth \
 	-Dtests=false \
 	-Dtls_check=false
 
-%ninja_build -C build
+%meson_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%ninja_install -C build
+%meson_install
 
 install -d $RPM_BUILD_ROOT%{py3_sitedir}/gi/overrides
 cp -p %{SOURCE1} $RPM_BUILD_ROOT%{py3_sitedir}/gi/overrides/Soup.py
