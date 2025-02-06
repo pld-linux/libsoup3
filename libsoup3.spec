@@ -6,7 +6,7 @@ Summary:	HTTP client/server library for GNOME
 Summary(pl.UTF-8):	Biblioteka klienta/serwera HTTP dla GNOME
 Name:		libsoup3
 Version:	3.6.4
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/libsoup/3.6/libsoup-%{version}.tar.xz
@@ -131,6 +131,7 @@ API libsoup 3 dla języka Vala.
 
 %build
 %meson \
+	-Dautobahn=disabled \
 	%{!?with_apidocs:-Ddocs=disabled} \
 	-Dntlm=enabled \
 	-Dntlm_auth=/usr/bin/ntlm_auth \
