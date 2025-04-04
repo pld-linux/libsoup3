@@ -1,6 +1,6 @@
---- libsoup-3.0.0/meson.build.orig	2021-09-18 17:42:24.256217200 +0200
-+++ libsoup-3.0.0/meson.build	2021-09-19 22:18:19.217690057 +0200
-@@ -344,11 +344,18 @@ endif
+--- libsoup-3.6.5/meson.build.orig	2025-03-21 19:30:16.000000000 +0100
++++ libsoup-3.6.5/meson.build	2025-04-04 18:11:50.227681858 +0200
+@@ -325,11 +325,18 @@ endif
  ################
  # NTLM not supported on Windows
  if host_machine.system() != 'windows'
@@ -22,10 +22,10 @@
    endif
  else
    ntlm_auth = dependency('', required: false)
-@@ -409,7 +416,7 @@ summary({
+@@ -388,7 +395,7 @@ summary({
  
  summary({
-     'GSSAPI' : enable_gssapi,
+     'GSSAPI' : gssapi_dep.found(),
 -    'NTLM' : ntlm_auth.found(),
 +    'NTLM' : ntlm_auth_found,
      'Brotli' : brotlidec_dep.found(),

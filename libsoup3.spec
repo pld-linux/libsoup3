@@ -1,16 +1,17 @@
 #
 # Conditional build:
 %bcond_without	apidocs	# API documentation
+%bcond_without	sysprof	# sysprof profiling
 
 Summary:	HTTP client/server library for GNOME
 Summary(pl.UTF-8):	Biblioteka klienta/serwera HTTP dla GNOME
 Name:		libsoup3
-Version:	3.6.4
-Release:	3
+Version:	3.6.5
+Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/libsoup/3.6/libsoup-%{version}.tar.xz
-# Source0-md5:	b42bfcd87a78b82272d2004976e10766
+# Source0-md5:	181a474d783492e3f5f7cbfb047bcecd
 # from libsoup 3.0.0 (waiting for pygobject3 release containing this file)
 Source1:	Soup.py
 Patch0:		%{name}-path-override.patch
@@ -32,7 +33,7 @@ BuildRequires:	python3
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	sqlite3-devel
-BuildRequires:	sysprof-devel >= 3.38
+%{?with_sysprof:BuildRequires:	sysprof-devel >= 3.38}
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	vala
 BuildRequires:	xz
@@ -132,11 +133,17 @@ API libsoup 3 dla języka Vala.
 %build
 %meson \
 	-Dautobahn=disabled \
-	%{!?with_apidocs:-Ddocs=disabled} \
+	-Dbrotli=enabled \
+	-Ddocs=%{__enabled_disabled apidocs} \
+	-Dgssapi=enabled \
+	-Dintrospection=enabled \
 	-Dntlm=enabled \
 	-Dntlm_auth=/usr/bin/ntlm_auth \
+	-Dpkcs11_tests=disabled \
+	-Dsysprof=%{__enabled_disabled sysprof} \
 	-Dtests=false \
-	-Dtls_check=false
+	-Dtls_check=false \
+	-Dvapi=enabled
 
 %meson_build
 
